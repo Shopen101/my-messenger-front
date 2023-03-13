@@ -6,8 +6,6 @@ This project using ReactJS & webSocket, also webRTC
 
 Here I describe Stack
 
-### `npm start`
-
 ReactJS
 Redux-toolkit
 TypeScript

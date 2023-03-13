@@ -1,11 +1,14 @@
 import React from 'react'
-import { Header } from '../../modules'
-import { Container } from './messenger-styled'
+import { Header, SideMenu } from '../../modules'
+import { Container, MainSection } from './messenger-styled'
 
 export const Messenger: React.FC = () => {
   return (
     <Container>
       <Header />
+      <MainSection>
+        <SideMenu />
+      </MainSection>
     </Container>
   )
 }
