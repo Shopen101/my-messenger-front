@@ -133,7 +133,7 @@ export const DashBoardFuncs = styled.div`
   }
 
   & .longSquare {
-    width: calc(100% - 6px);
+    width: calc(100% - 10px);
     height: 80px;
     border: 2px solid ${({ theme }) => theme.palette.grey[900]};
     border-bottom-left-radius: 15px;
