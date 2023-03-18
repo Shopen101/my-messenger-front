@@ -2,6 +2,7 @@ import * as React from 'react'
 import { styled } from '@mui/material/styles'
 import Badge from '@mui/material/Badge'
 import Avatar from '@mui/material/Avatar'
+import baba from '../../assets/baba-1.png'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -44,9 +45,9 @@ export const CommonAva: React.FC = () => {
   return (
     <StyledBadge
       overlap="circular"
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       variant="dot">
-      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+      <Avatar alt="Remy Sharp" src={baba} />
     </StyledBadge>
   )
 }

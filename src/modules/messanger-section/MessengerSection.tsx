@@ -5,9 +5,11 @@ import {
   InputSearch,
   MessengerBase,
 } from '../../components'
+import { MessangerInput, MessengerTop } from './components'
 import {
   ControlPanel,
   Dialogs,
+  Messenger,
   UserBlock,
   UserList,
   UserListScroll,
@@ -78,91 +80,6 @@ export const MessengerSection: React.FC = () => {
                   </div>
                 </div>
               </UserBlock>
-              <UserBlock>
-                <div className="ava">
-                  <CommonAva />
-                </div>
-                <div className="info">
-                  <div className="info-status">
-                    <p>Online</p>
-                    <p>12:45</p>
-                  </div>
-                  <div className="info-msg">
-                    <p className="user-name">Alberta Reyes</p>
-                    <p className="user-message">
-                      Adwords Keyword Research For Beginners
-                    </p>
-                  </div>
-                </div>
-              </UserBlock>
-              <UserBlock>
-                <div className="ava">
-                  <CommonAva />
-                </div>
-                <div className="info">
-                  <div className="info-status">
-                    <p>Online</p>
-                    <p>12:45</p>
-                  </div>
-                  <div className="info-msg">
-                    <p className="user-name">Alberta Reyes</p>
-                    <p className="user-message">
-                      Adwords Keyword Research For Beginners
-                    </p>
-                  </div>
-                </div>
-              </UserBlock>
-              <UserBlock>
-                <div className="ava">
-                  <CommonAva />
-                </div>
-                <div className="info">
-                  <div className="info-status">
-                    <p>Online</p>
-                    <p>12:45</p>
-                  </div>
-                  <div className="info-msg">
-                    <p className="user-name">Alberta Reyes</p>
-                    <p className="user-message">
-                      Adwords Keyword Research For Beginners
-                    </p>
-                  </div>
-                </div>
-              </UserBlock>
-              <UserBlock>
-                <div className="ava">
-                  <CommonAva />
-                </div>
-                <div className="info">
-                  <div className="info-status">
-                    <p>Online</p>
-                    <p>12:45</p>
-                  </div>
-                  <div className="info-msg">
-                    <p className="user-name">Alberta Reyes</p>
-                    <p className="user-message">
-                      Adwords Keyword Research For Beginners
-                    </p>
-                  </div>
-                </div>
-              </UserBlock>
-              <UserBlock>
-                <div className="ava">
-                  <CommonAva />
-                </div>
-                <div className="info">
-                  <div className="info-status">
-                    <p>Online</p>
-                    <p>12:45</p>
-                  </div>
-                  <div className="info-msg">
-                    <p className="user-name">Alberta Reyes</p>
-                    <p className="user-message">
-                      Adwords Keyword Research For Beginners
-                    </p>
-                  </div>
-                </div>
-              </UserBlock>
             </UserListScroll>
           </Dialogs>
 
@@ -182,7 +99,11 @@ export const MessengerSection: React.FC = () => {
           </ControlPanel>
         </UserList>
 
-        <div className="messenger">2134</div>
+        <Messenger>
+          <MessengerTop />
+          <div className="messengerBase">Testing text...</div>
+          <MessangerInput />
+        </Messenger>
       </>
     </MessengerBase>
   )

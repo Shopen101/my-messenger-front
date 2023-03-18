@@ -16,3 +16,21 @@ code {
 * {
   box-sizing: border-box;
 }
+
+* ::-webkit-scrollbar {
+  width: 6px;
+}
+
+* ::-webkit-scrollbar-track {
+  background: #edeff2;
+  border-radius: 20px;
+}
+
+* ::-webkit-scrollbar-thumb {
+  background-color: #c3cad9;
+  border-radius: 20px;
+}
+
+* ::-webkit-scrollbar-thumb:active {
+  background-color: #6b7a99;
+}

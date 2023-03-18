@@ -1,9 +1,26 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
-export const Dialogs = styled.div``
+export const Dialogs = styled.div`
+  .userSearch {
+    margin-bottom: 10px;
+  }
+`
+
+export const Messenger = styled.div`
+  width: 100%;
+  background: ${({ theme }) => theme.palette.grey[400]};
+  padding: 20px 30px 15px 30px;
+  display: flex;
+  flex-flow: column nowrap;
+
+  .messengerBase {
+    height: calc(100% - 108px);
+    overflow-y: auto;
+  }
+`
 
 export const UserList = styled.div`
-  padding: 30px 10px;
+  padding: 40px 10px 25px;
   background: #fff;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -18,6 +35,18 @@ export const ControlPanel = styled.div`
   width: 220px;
   display: flex;
   justify-content: space-between;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    top: -15px;
+    left: 0;
+    background: ${({ theme }) => theme.palette.grey[900]};
+  }
 `
 
 export const UserBlock = styled.div`
@@ -29,6 +58,30 @@ export const UserBlock = styled.div`
   background: transparent;
   border-radius: 10px;
   transition-duration: 100ms;
+  height: auto;
+
+  &:hover {
+    background: ${({ theme }) => theme.palette.primary.main};
+    cursor: pointer;
+
+    & .info {
+      &-status {
+        p {
+          color: ${({ theme }) => theme.palette.grey[600]};
+        }
+      }
+
+      &-msg {
+        p:first-child {
+          color: #fff;
+        }
+
+        p:nth-child(2n) {
+          color: ${({ theme }) => theme.palette.grey[900]};
+        }
+      }
+    }
+  }
 
   > * p {
     padding: 0;
@@ -36,7 +89,7 @@ export const UserBlock = styled.div`
   }
 
   & .info {
-    padding: 10px 0 20px 20px;
+    padding: 10px 0 0px 20px;
 
     &-status {
       display: flex;
@@ -78,19 +131,5 @@ export const UserBlock = styled.div`
 
 export const UserListScroll = styled.div`
   overflow-y: auto;
-  max-height: calc(100vh - 300px);
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.palette.grey[900]};
-    border-radius: 20px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.palette.grey[600]};
-    border-radius: 20px;
-  }
+  max-height: calc(100vh - 310px);
 `

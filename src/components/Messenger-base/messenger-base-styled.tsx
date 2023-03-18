@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 export const Base = styled.div`
   box-shadow: 0px 30px 60px rgba(38, 51, 77, 0.03);
