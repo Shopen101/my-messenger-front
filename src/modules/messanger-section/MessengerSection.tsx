@@ -9,6 +9,7 @@ import { MessangerInput, MessengerTop } from './components'
 import {
   ControlPanel,
   Dialogs,
+  MessagesFullHeight,
   Messenger,
   UserBlock,
   UserList,
@@ -18,6 +19,7 @@ import GroupsIcon from '@mui/icons-material/Groups'
 import PhoneIcon from '@mui/icons-material/Phone'
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer'
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest'
+import { UserMessage } from './components/UserMessage/UserMessage'
 
 export const MessengerSection: React.FC = () => {
   return (
@@ -46,7 +48,7 @@ export const MessengerSection: React.FC = () => {
                   </div>
                 </div>
               </UserBlock>
-              <UserBlock>
+              <UserBlock activeDialog>
                 <div className="ava">
                   <CommonAva />
                 </div>
@@ -101,7 +103,11 @@ export const MessengerSection: React.FC = () => {
 
         <Messenger>
           <MessengerTop />
-          <div className="messengerBase">Testing text...</div>
+          <MessagesFullHeight>
+            <UserMessage />
+            <UserMessage isMyMessage />
+            <UserMessage />
+          </MessagesFullHeight>
           <MessangerInput />
         </Messenger>
       </>

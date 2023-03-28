@@ -41,12 +41,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }))
 
-export const CommonAva: React.FC = () => {
+interface Props {
+  isShowStatusIcon?: boolean
+}
+
+export const CommonAva: React.FC<Props> = ({ isShowStatusIcon = true }) => {
   return (
     <StyledBadge
       overlap="circular"
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      variant="dot">
+      variant={isShowStatusIcon ? 'dot' : undefined}>
       <Avatar alt="Remy Sharp" src={baba} />
     </StyledBadge>
   )

@@ -1,5 +1,9 @@
 import styled from 'styled-components/macro'
 
+interface IUserBlock {
+  activeDialog?: boolean
+}
+
 export const Dialogs = styled.div`
   .userSearch {
     margin-bottom: 10px;
@@ -12,10 +16,13 @@ export const Messenger = styled.div`
   padding: 20px 30px 15px 30px;
   display: flex;
   flex-flow: column nowrap;
+`
+export const MessagesFullHeight = styled.div`
+  height: calc(100% - 108px);
+  overflow-y: auto;
 
-  .messengerBase {
-    height: calc(100% - 108px);
-    overflow-y: auto;
+  > div {
+    margin-bottom: 30px;
   }
 `
 
@@ -49,7 +56,7 @@ export const ControlPanel = styled.div`
   }
 `
 
-export const UserBlock = styled.div`
+export const UserBlock = styled.div<IUserBlock>`
   max-width: 280px;
   height: 128px;
   padding: 14px 20px;
@@ -59,6 +66,8 @@ export const UserBlock = styled.div`
   border-radius: 10px;
   transition-duration: 100ms;
   height: auto;
+  background: ${({ activeDialog }) =>
+    activeDialog ? '#f7f7f7' : 'transparent'};
 
   &:hover {
     background: ${({ theme }) => theme.palette.primary.main};

@@ -1,0 +1,1 @@
+1) add alias for components folder

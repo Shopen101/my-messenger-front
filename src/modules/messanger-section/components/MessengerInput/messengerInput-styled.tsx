@@ -4,17 +4,17 @@ export const InputBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   position: relative;
+  padding-top: 20px;
 
   &::before {
     content: '';
     display: block;
     height: 2px;
-    width: 100%;
+    width: 95%;
     background: #edeff2;
     position: absolute;
-    top: -9px;
+    top: 11px;
     left: 0;
   }
 
