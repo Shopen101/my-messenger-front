@@ -29,6 +29,8 @@ $api.interceptors.response.use(
         return $api.request(originalRequest)
       } catch (error) {
         console.log('пользователь не авторизован')
+        // rewrite to env variables
+        window.location.href = 'http://localhost:3000/'
       }
     }
     throw error
