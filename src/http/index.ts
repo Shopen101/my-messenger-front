@@ -14,7 +14,7 @@ $api.interceptors.request.use(config => {
   return config
 })
 
-// this interceptor can to process first 401 status from response and refresh our access token id its die
+// this interceptor can to process first 401 status from response and refresh our access token id if its died
 $api.interceptors.response.use(
   config => {
     return config
@@ -29,8 +29,8 @@ $api.interceptors.response.use(
         return $api.request(originalRequest)
       } catch (error) {
         console.log('пользователь не авторизован')
-        // rewrite to env variables
-        window.location.href = 'http://localhost:3000/'
+        // TODO: rewrite to env variables
+        window.location.href = 'http://localhost:3000/auth'
       }
     }
     throw error

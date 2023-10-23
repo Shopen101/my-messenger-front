@@ -41,7 +41,7 @@ export const Registration: React.FC = observer(() => {
       password: '',
     },
     validationSchema,
-    onSubmit: values => store.registration(values.email, values.password),
+    onSubmit: userData => store.registration(userData),
   })
 
   return (

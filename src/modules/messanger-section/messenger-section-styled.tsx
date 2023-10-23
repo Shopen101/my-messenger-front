@@ -61,13 +61,12 @@ export const UserBlock = styled.div<IUserBlock>`
   height: 128px;
   padding: 14px 20px;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   background: transparent;
   border-radius: 10px;
   transition-duration: 100ms;
   height: auto;
-  background: ${({ activeDialog }) =>
-    activeDialog ? '#f7f7f7' : 'transparent'};
+  background: ${({ activeDialog }) => (activeDialog ? '#f7f7f7' : 'transparent')};
 
   &:hover {
     background: ${({ theme }) => theme.palette.primary.main};

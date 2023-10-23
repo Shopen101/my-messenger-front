@@ -4,18 +4,19 @@ export const HeaderContainer = styled.div`
   display: flex;
   padding: 10px 0;
   margin-bottom: 42px;
+  justify-content: space-between;
 `
 
 export const MessengerTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 700px;
+  width: calc(100% - 340px);
 `
 
 export const Menu = styled.div`
   display: flex;
-  width: 123px;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
 
@@ -33,4 +34,11 @@ export const Menu = styled.div`
       border-bottom: 1px solid ${({ theme }) => theme.palette.primary.main};
     }
   }
+`
+
+export const MenuTab = styled.div`
+  display: flex;
+  width: 120px;
+  justify-content: space-between;
+  align-items: center;
 `

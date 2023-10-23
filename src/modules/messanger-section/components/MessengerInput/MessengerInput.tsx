@@ -6,7 +6,14 @@ import CollectionsIcon from '@mui/icons-material/Collections'
 import SendIcon from '@mui/icons-material/Send'
 import { FormControl, TextField } from '@mui/material'
 
-export const MessangerInput: React.FC = () => {
+type Props = {
+  value: string
+  sendMessage: () => void
+  onKeyPress: (event: React.KeyboardEvent<HTMLDivElement>) => void
+  setValue: React.Dispatch<React.SetStateAction<string>>
+}
+
+export const MessangerInput: React.FC<Props> = ({ sendMessage, value, setValue, onKeyPress }) => {
   return (
     <InputBlock>
       <div className="btns">
@@ -22,6 +29,7 @@ export const MessangerInput: React.FC = () => {
               outline: 'none',
               textarea: {
                 fontSize: '14px',
+                height: '30px',
                 maxHeight: '70px',
                 overflow: 'auto !important',
               },
@@ -34,10 +42,14 @@ export const MessangerInput: React.FC = () => {
             }}
             placeholder="Текст сообщения"
             multiline
+            value={value}
+            onChange={event => setValue(event.target.value)}
+            onKeyDown={onKeyPress}
+            autoFocus
           />
         </FormControl>
       </div>
-      <div className="send">
+      <div className="send" onClick={sendMessage}>
         <SendIcon sx={{ color: theme.palette.primary.main }} />
       </div>
     </InputBlock>

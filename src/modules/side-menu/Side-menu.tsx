@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import MessageIcon from '@mui/icons-material/Message'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import PersonIcon from '@mui/icons-material/Person'
@@ -11,18 +11,20 @@ import GroupsIcon from '@mui/icons-material/Groups'
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom'
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest'
 
-import {
-  AvaBtns,
-  BigAvaBlock,
-  DashBoardFuncs,
-  FeedBack,
-  UserInfo,
-} from './side-meny-styled'
+import { AvaBtns, BigAvaBlock, DashBoardFuncs, FeedBack, UserInfo } from './side-meny-styled'
 import { BigAva } from '../../components'
 
 import { theme } from '../../theme'
+import { Context } from '../../index'
+import { observer } from 'mobx-react-lite'
 
-export const SideMenu = () => {
+export const SideMenu = observer(() => {
+  const {
+    store: {
+      user: { email, firstName, lastName },
+    },
+  } = useContext(Context)
+
   return (
     <div>
       <AvaBtns>
@@ -33,8 +35,10 @@ export const SideMenu = () => {
         <BigAva />
       </BigAvaBlock>
       <UserInfo>
-        <p className="userName">Daniil Lemon</p>
-        <p className="userEmail">rosalie.rice@gmail.com</p>
+        <p className="userName">
+          {firstName}&nbsp;{lastName}
+        </p>
+        <p className="userEmail">{email}</p>
       </UserInfo>
       <DashBoardFuncs>
         <div className="squares">
@@ -89,4 +93,4 @@ export const SideMenu = () => {
       </FeedBack>
     </div>
   )
-}
+})
