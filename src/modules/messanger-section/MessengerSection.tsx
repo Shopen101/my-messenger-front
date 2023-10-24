@@ -27,6 +27,7 @@ export const MessengerSection: React.FC = observer(() => {
   const { ref, inView } = useInView({
     threshold: 1,
   })
+
   const navigate = useNavigate()
   const socket = useSocket()
 
@@ -37,6 +38,7 @@ export const MessengerSection: React.FC = observer(() => {
   const [messageList, setMessageList] = useState<UserMessage[]>([])
   const [currentUser] = useState(toJS(user))
   const [messagesCount, setMessagesCount] = useState(10)
+  const [isMessageEnd, setIsMessageEnd] = useState(false)
 
   const messagesScrollerRef = useRef<HTMLDivElement>(null)
   const lastMessageRef = useRef<HTMLDivElement>(null)
@@ -84,7 +86,17 @@ export const MessengerSection: React.FC = observer(() => {
       currentDialog.userId as string,
       nextMessagesCount,
     )
-    store.setCurrentDialogParams(currentDialog.userId as string, response.data.messages, response.data._id)
+
+    if (response.data.isMessageEnd) {
+      setIsMessageEnd(true)
+      return
+    }
+
+    store.setCurrentDialogParams(
+      currentDialog.userId as string,
+      response.data.dialog.messages,
+      response.data.dialog._id,
+    )
     setMessagesCount(nextMessagesCount)
   }
 
@@ -106,7 +118,7 @@ export const MessengerSection: React.FC = observer(() => {
   }, [store, store.currentDialog.messages])
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !isMessageEnd) {
       fetchDialogs()
     }
   }, [inView])
@@ -149,8 +161,8 @@ export const MessengerSection: React.FC = observer(() => {
                       activeDialog={user.id === currentDialog.userId}
                       onClick={async () => {
                         const response = await RoomService.getDialogMessages(currentUser.id, user.id, messagesCount)
-                        socket.emit('joinRoom', response.data._id)
-                        store.setCurrentDialogParams(user.id, response.data.messages, response.data._id)
+                        socket.emit('joinRoom', response.data.dialog._id)
+                        store.setCurrentDialogParams(user.id, response.data.dialog.messages, response.data.dialog._id)
                       }}>
                       <div className="ava">
                         <CommonAva />
