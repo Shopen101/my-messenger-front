@@ -41,7 +41,7 @@ export const Registration: React.FC = observer(() => {
       password: '',
     },
     validationSchema,
-    onSubmit: userData => store.registration(userData),
+    onSubmit: userData => store.registration(userData).then(() => navigate('/')),
   })
 
   return (

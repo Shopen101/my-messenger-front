@@ -4,8 +4,6 @@ import { MessageResponse, RoomResponse } from '../models/response/RoomResponse'
 
 interface IMessageParams {
   roomId: string | null
-  user1: string
-  user2: string
   authorFirstName: string
   authorLastName: string
   authorId: string
@@ -25,11 +23,9 @@ export default class RoomService {
   }
 
   static async sendNewMessage(messageParams: IMessageParams): Promise<AxiosResponse<MessageResponse>> {
-    const { roomId, user1, user2, authorFirstName, authorLastName, authorId, message, time } = messageParams
+    const { roomId, authorFirstName, authorLastName, authorId, message, time } = messageParams
     return $api.post<MessageResponse>(`/sendNewMessage`, {
       roomId,
-      user1,
-      user2,
       authorFirstName,
       authorLastName,
       authorId,

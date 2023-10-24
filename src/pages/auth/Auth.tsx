@@ -30,7 +30,7 @@ export const Auth: React.FC = observer(() => {
       password: '',
     },
     validationSchema,
-    onSubmit: values => store.login(values.email, values.password),
+    onSubmit: values => store.login(values.email, values.password).then(() => navigate('/')),
   })
 
   return (

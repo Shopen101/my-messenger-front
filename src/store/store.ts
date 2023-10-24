@@ -112,7 +112,6 @@ export default class Store {
     try {
       const response = await UserService.getAllUsers()
       this.setAllUsers(response.data)
-      console.log('users', response.data)
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log(error?.response?.data?.message)

@@ -13,7 +13,6 @@ export const useSocket = () => {
   React.useEffect(() => {
     return () => {
       if (socketRef.current) {
-        console.log('disconnect!!!')
         socketRef.current.disconnect()
       }
     }

@@ -21,12 +21,13 @@ import { Context } from '../../index'
 import { observer } from 'mobx-react-lite'
 import { toJS } from 'mobx'
 import RoomService from '../../services/RoomService'
+import { useNavigate } from 'react-router-dom'
 
 export const MessengerSection: React.FC = observer(() => {
   const { ref, inView } = useInView({
     threshold: 1,
   })
-
+  const navigate = useNavigate()
   const socket = useSocket()
 
   const { store } = useContext(Context)
@@ -52,8 +53,6 @@ export const MessengerSection: React.FC = observer(() => {
 
     await RoomService.sendNewMessage({
       ...messageData,
-      user1: currentUser.id,
-      user2: currentDialog.userId as string,
     }).then(response => {
       store.setCurrentDialogRoomId(response.data.roomId)
     })
@@ -126,6 +125,12 @@ export const MessengerSection: React.FC = observer(() => {
       }
     }
   }, [messageList])
+
+  useEffect(() => {
+    if (!store.isAuth) {
+      navigate('/auth')
+    }
+  }, [navigate, store.isAuth])
 
   return (
     <MessengerBase>
