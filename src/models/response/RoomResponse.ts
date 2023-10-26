@@ -3,7 +3,7 @@ export interface RoomResponse {
     _id: string
     user1: string
     user2: string
-    messages: Message[]
+    messages: TUserMessage[]
   }
   isMessageEnd: boolean
 }

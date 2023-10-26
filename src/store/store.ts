@@ -37,7 +37,7 @@ export default class Store {
     this.allUsers = users
   }
 
-  setCurrentDialogParams(id: string, messages: Message[], roomId: string) {
+  setCurrentDialogParams(id: string, messages: TUserMessage[], roomId: string) {
     this.currentDialog.userId = id
     this.currentDialog.messages = messages
     this.currentDialog.roomId = roomId

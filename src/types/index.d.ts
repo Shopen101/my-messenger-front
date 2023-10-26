@@ -9,7 +9,7 @@ type UserData = {
   password: string
 }
 
-type UserMessage = {
+type TUserMessage = {
   roomId: string | null
   authorFirstName: string
   authorLastName: string
@@ -21,13 +21,5 @@ type UserMessage = {
 type CurrentDialog = {
   userId: null | string
   roomId: null | string
-  messages: message[]
-}
-
-type Message = {
-  authorFirstName: string
-  authorLastName: string
-  authorId: string
-  message: string
-  _id: string
+  messages: TUserMessage[]
 }

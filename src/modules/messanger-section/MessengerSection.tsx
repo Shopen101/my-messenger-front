@@ -35,7 +35,7 @@ export const MessengerSection: React.FC = observer(() => {
   const { currentDialog, allUsers, user } = store
 
   const [currentMessage, setCurrentMessage] = useState<string>('')
-  const [messageList, setMessageList] = useState<UserMessage[]>([])
+  const [messageList, setMessageList] = useState<TUserMessage[]>([])
   const [currentUser] = useState(toJS(user))
   const [messagesCount, setMessagesCount] = useState(10)
   const [isMessageEnd, setIsMessageEnd] = useState(false)
@@ -108,7 +108,7 @@ export const MessengerSection: React.FC = observer(() => {
   }
 
   useEffect(() => {
-    socket.on('receiveMessage', (data: UserMessage) => {
+    socket.on('receiveMessage', (data: TUserMessage) => {
       setMessageList(list => [...list, data])
     })
   }, [socket])
