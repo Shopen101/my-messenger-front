@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { CommonAva, IconButtons, InputSearch, MessengerBase } from '../../components'
-import { MessangerInput, MessengerTop } from './components'
+import { CommonAva, IconButtons, InputSearch, MessengerBase } from '@components'
+import { CallArea, MessangerInput, MessengerTop } from './components'
 import {
   ControlPanel,
   Dialogs,
@@ -22,6 +22,7 @@ import { observer } from 'mobx-react-lite'
 import { toJS } from 'mobx'
 import RoomService from '../../services/RoomService'
 import { useNavigate } from 'react-router-dom'
+import { useCall } from './hooks/useCall'
 
 export const MessengerSection: React.FC = observer(() => {
   const { ref, inView } = useInView({
@@ -39,9 +40,21 @@ export const MessengerSection: React.FC = observer(() => {
   const [currentUser] = useState(toJS(user))
   const [messagesCount, setMessagesCount] = useState(10)
   const [isMessageEnd, setIsMessageEnd] = useState(false)
+  const [isStartCall, setIsStartCall] = useState(false)
+  const [isIncommingAccept, setIsIncommingAccept] = useState(false)
+  const [isAnswered, setIsAnswered] = useState(false)
 
   const messagesScrollerRef = useRef<HTMLDivElement>(null)
   const lastMessageRef = useRef<HTMLDivElement>(null)
+
+  const webRTC = useCall({
+    currentUser,
+    targetUser: currentDialog.userId,
+    roomId: currentDialog.roomId,
+    startCalling: isStartCall,
+    socket,
+    isAnswered,
+  })
 
   const sendMessage = async () => {
     const messageData = {
@@ -71,6 +84,13 @@ export const MessengerSection: React.FC = observer(() => {
     if (messagesCount !== 10) {
       setMessagesCount(10)
     }
+  }
+
+  const onCallClick = () => {
+    setIsStartCall(true)
+    socket.emit('CLIENT@ROOMS:CALL_TO_USER', {
+      roomId: currentDialog.roomId,
+    })
   }
 
   const setScrollDown = () => {
@@ -142,11 +162,29 @@ export const MessengerSection: React.FC = observer(() => {
     if (!store.isAuth) {
       navigate('/auth')
     }
-  }, [navigate, store.isAuth])
+
+    socket.on('SERVER@ROOM:INCOMMING_CALL', () => {
+      setIsStartCall(true)
+    })
+  }, [navigate, store.isAuth, socket, currentDialog])
+
+  const handleAnswer = () => {
+    socket.emit('CLIENT@ROOM:INCOMMING_CALL_ACCEPT', { roomId: currentDialog.roomId })
+  }
+
+  React.useEffect(() => {
+    // socket.on('CONNECTED', () => {
+    //   console.log('CONNECTED')
+    //   setIsStartCall(true)
+    //   setIsAnswered(true)
+    // })
+  }, [])
 
   return (
     <MessengerBase>
       <>
+        <audio controls />
+        <CallArea isStartCall={isStartCall} setIsStartCall={setIsStartCall} handleAnswer={handleAnswer} />
         <UserList>
           <Dialogs>
             <div className="userSearch">
@@ -183,6 +221,7 @@ export const MessengerSection: React.FC = observer(() => {
                     </UserBlock>
                   )
                 }
+                return null
               })}
             </UserListScroll>
           </Dialogs>
@@ -204,7 +243,7 @@ export const MessengerSection: React.FC = observer(() => {
         </UserList>
 
         <Messenger>
-          <MessengerTop />
+          <MessengerTop onCallClick={onCallClick} />
           <MessagesFullHeight ref={messagesScrollerRef}>
             {messageList?.map((item, index) => {
               return (

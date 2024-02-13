@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { makeAutoObservable } from 'mobx'
+
 import AuthService from '../services/AuthService'
 import UserService from '../services/UserService'
 import { IUser } from '../models/IUser'
 import { AuthResponse } from '../models/response/AuthResponse'
 import { API_URL } from '../http'
-
 export default class Store {
   user = {} as IUser
   isAuth = false

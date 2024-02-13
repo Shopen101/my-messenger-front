@@ -1,0 +1,36 @@
+h2 {
+  color: #000;
+  margin: 0;
+}
+
+.callbox {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+
+  p {
+    color: #5c5c5c;
+    font-size: 1.3em;
+    margin: 10px;
+    text-align: center;
+  }
+
+  &__user {
+    &__img {
+      max-width: 300px;
+      margin: 0 auto;
+
+      img {
+        max-width: 300px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  &__actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 15px;
+  }
+}

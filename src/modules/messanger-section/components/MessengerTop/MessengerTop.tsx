@@ -4,11 +4,15 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { theme } from '../../../../theme'
 import { MessangerTop } from './messengerTop-styled'
 
-export const MessengerTop: React.FC = () => {
+interface IProps {
+  onCallClick: () => any
+}
+
+export const MessengerTop: React.FC<IProps> = ({ onCallClick }) => {
   return (
     <MessangerTop>
       <div className="btn calls">
-        <CallIcon sx={{ color: theme.palette.grey[600] }} />
+        <CallIcon sx={{ color: theme.palette.grey[600] }} onClick={onCallClick} />
       </div>
       <div className="userName">
         <div className="indicator"></div>
